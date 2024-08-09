@@ -5,8 +5,20 @@
 - The error messages suggest that kubectl is attempting to connect to localhost:8080, which is not the correct API server endpoint for a Kubernetes cluster.
 
 
-- Check the status of Kubernetes API Server: -
+- Check the status of Kubernetes API Server.
   ```
   sudo systemctl status kube-apiserver
   ```
   
+- If not running, try to restart it.
+  ```
+  sudo systemctl restart kube-apiserver
+  ```
+
+![image](https://github.com/user-attachments/assets/7d21d623-a512-47e1-b378-7979ead2a670)
+
+The above error shows, the api-server is not running as a standalone systemd on your local machine.
+- Check the Status of the Static Pods:
+  ```
+  sudo crictl ps -a | grep kube-apiserver
+  ```
